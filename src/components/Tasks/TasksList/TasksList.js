@@ -8,7 +8,7 @@ export default function TasksList() {
     const { tasksData } = useContext(TasksContext);
 
     return(
-        <div className={`${styles['tasks-list-container']}`}>
+        <div className={`${styles['tasks-list-container']}`} style={{position: 'relative'}}>
             <table className={`${styles['tasks-table']}`}>
                 <thead>
                     <tr>

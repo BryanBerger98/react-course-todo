@@ -1,9 +1,10 @@
 import styles from './Modal.module.css';
 import Button from '../Button/Button';
+import { createPortal } from 'react-dom';
 
 export default function Modal({variant = 'primary', isOpen = false, setIsOpen, title = 'Default modal title', children}) {
 
-    return(
+    return createPortal(
         <>
             {
                 isOpen &&
@@ -19,6 +20,7 @@ export default function Modal({variant = 'primary', isOpen = false, setIsOpen, t
                     </div>
                 </div>
             }
-        </>
+        </>,
+        document.body
     )
 }
