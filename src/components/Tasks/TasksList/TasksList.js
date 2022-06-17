@@ -16,6 +16,7 @@ export default function TasksList() {
                         <th>Title</th>
                         <th>Description</th>
                         <th>Created at</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>

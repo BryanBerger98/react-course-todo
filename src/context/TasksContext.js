@@ -8,7 +8,8 @@ const TasksContext = createContext({
     },
     addTask: (task) => {},
     removeTask: (taskIndex) => {},
-    toggleTaskIsDone: ({taskIndex, isDone}) => {}
+    toggleTaskIsDone: ({taskIndex, isDone}) => {},
+    editTask: ({taskIndex, task}) => {}
 });
 
 export { TasksContext };
@@ -45,6 +46,17 @@ function tasksReducer(state, action) {
             count: tasks.length
         }
     }
+    if (action.type === 'EDIT_TASK' && action.value && !isNaN(+action.value.taskIndex)) {
+        const tasks = [...state.tasks];
+        tasks[+action.value.taskIndex] = {
+            ...tasks[+action.value.taskIndex],
+            ...action.value.task
+        }
+        return {
+            tasks,
+            count: tasks.length
+        }
+    }
     return state ? state : INITIAL_TASKS;
 }
 
@@ -64,11 +76,16 @@ const TasksContextProvider = ({children}) => {
         dispatchTasks({type: 'TOGGLE_STATUS', value: {taskIndex, isDone}})
     }
 
+    const editTask = ({taskIndex, task}) => {
+        dispatchTasks({type: 'EDIT_TASK', value: {taskIndex, task}})
+    }
+
     const value = {
         tasksData,
         addTask,
         removeTask,
-        toggleTaskIsDone
+        toggleTaskIsDone,
+        editTask
     }
 
     return(

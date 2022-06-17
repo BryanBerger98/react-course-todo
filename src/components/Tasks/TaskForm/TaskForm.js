@@ -4,23 +4,30 @@ import { TasksContext } from "../../../context/TasksContext";
 import Button from "../../ui/Button/Button";
 import Field from "../../ui/Field/Field";
 
-export default function TaskForm({closeModal}) {
+export default function TaskForm({closeModal, value, index}) {
 
 
-    const [formValue, setFormValue] = useState({
+    const [formValue, setFormValue] = useState(value ? value :{
         title: '',
         description: ''
     })
 
-    const { addTask } = useContext(TasksContext)
+    const { addTask, editTask } = useContext(TasksContext)
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addTask({
-            ...formValue,
-            createdAt: new Date(),
-            isDone: false
-        });
+        if (value && !isNaN(+index)) {
+            editTask({
+                taskIndex: index,
+                task: formValue
+            });
+        } else {
+            addTask({
+                ...formValue,
+                createdAt: new Date(),
+                isDone: false
+            });
+        }
         closeModal();
     }
 
