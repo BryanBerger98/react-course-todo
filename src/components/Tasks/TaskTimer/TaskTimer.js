@@ -4,6 +4,7 @@ import styles from './TaskTimer.module.css';
 import useTimer from '../../../hooks/useTimer';
 import { useContext } from 'react';
 import { TasksContext } from '../../../context/TasksContext';
+import PropTypes from 'prop-types';
 
 export default function TaskTimer({index, onCloseModal}) {
 
@@ -28,3 +29,8 @@ export default function TaskTimer({index, onCloseModal}) {
     )
 
 }
+
+TaskTimer.propTypes = {
+    index: PropTypes.number,
+    onCloseModal: PropTypes.func
+};
