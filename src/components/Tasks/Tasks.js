@@ -3,10 +3,11 @@ import TasksList from "./TasksList/TasksList";
 import styles from './Tasks.module.css';
 import Modal from "../ui/Modal/Modal";
 import { useState } from "react";
+import TaskForm from "./TaskForm/TaskForm";
 
 export default function Tasks() {
 
-    const [isNewTaskModalOpen, setIsNewTaskModalOpen] = useState(true);
+    const [isNewTaskModalOpen, setIsNewTaskModalOpen] = useState(false);
 
     return(
         <>
@@ -15,7 +16,9 @@ export default function Tasks() {
                 <Button onClick={() => setIsNewTaskModalOpen(true)}>New Task</Button>
             </div>
             <TasksList />
-            <Modal isOpen={isNewTaskModalOpen} setIsOpen={setIsNewTaskModalOpen} />
+            <Modal isOpen={isNewTaskModalOpen} setIsOpen={setIsNewTaskModalOpen} title={'New task'}>
+                <TaskForm />
+            </Modal>
         </>
     )    
 }
