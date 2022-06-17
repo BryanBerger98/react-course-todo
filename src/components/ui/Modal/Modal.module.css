@@ -38,10 +38,3 @@
 .modal-content {
     padding: 1rem;
 }
-
-.modal-footer {
-    padding: 1rem;
-    border-top: 1px solid #DDDEE2;
-    display: flex;
-    justify-content: end;
-}
