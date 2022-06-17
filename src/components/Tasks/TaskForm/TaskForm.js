@@ -18,7 +18,8 @@ export default function TaskForm({closeModal}) {
         e.preventDefault();
         addTask({
             ...formValue,
-            createdAt: new Date()
+            createdAt: new Date(),
+            isDone: false
         });
         closeModal();
     }

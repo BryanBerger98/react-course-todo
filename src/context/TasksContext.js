@@ -2,8 +2,13 @@ import { useReducer } from "react";
 import { createContext } from "react";
 
 const TasksContext = createContext({
-    theme: 'light',
-    toggleTheme: () => {}
+    tasksData: {
+        tasks: [],
+        count: 0
+    },
+    addTask: (task) => {},
+    removeTask: (taskIndex) => {},
+    toggleTaskIsDone: ({taskIndex, isDone}) => {}
 });
 
 export { TasksContext };
@@ -29,6 +34,17 @@ function tasksReducer(state, action) {
             count: tasks.length
         }
     }
+    if (action.type === 'TOGGLE_STATUS' && action.value && !isNaN(+action.value.taskIndex)) {
+        const tasks = [...state.tasks];
+        tasks[+action.value.taskIndex] = {
+            ...tasks[+action.value.taskIndex],
+            isDone: action.value.isDone
+        }
+        return {
+            tasks,
+            count: tasks.length
+        }
+    }
     return state ? state : INITIAL_TASKS;
 }
 
@@ -44,10 +60,15 @@ const TasksContextProvider = ({children}) => {
         dispatchTasks({type: 'REMOVE_TASK', value: taskIndex});
     }
 
+    const toggleTaskIsDone = ({taskIndex, isDone}) => {
+        dispatchTasks({type: 'TOGGLE_STATUS', value: {taskIndex, isDone}})
+    }
+
     const value = {
         tasksData,
         addTask,
-        removeTask
+        removeTask,
+        toggleTaskIsDone
     }
 
     return(

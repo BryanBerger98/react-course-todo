@@ -20,7 +20,7 @@ export default function TasksList() {
                 </thead>
                 <tbody>
                     {tasksData && tasksData.tasks && tasksData.tasks.map((task, index) => (
-                        <TaskRow key={index} task={task} />
+                        <TaskRow key={index} task={task} index={index} />
                     ))}
                 </tbody>
             </table>
