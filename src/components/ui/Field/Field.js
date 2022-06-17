@@ -24,12 +24,12 @@ export default function Field({label, type = 'text', placeholder, value, validat
 
     return(
         <div className={styles['input-group']}>
-            <label htmlFor={`${id}-${label}`}>{label} {validation && validation.required && <span style={{color: '#B80C09'}}>*</span>}</label>
-            {
-                type === 'text' && <input type={type} id={`${id}-${label}`} value={value} placeholder={placeholder} className={styles.input} onChange={handleInputChange} />
-            }
+            {label && <label htmlFor={`${id}-${label}`}>{label} {validation && validation.required && <span style={{color: '#B80C09'}}>*</span>}</label>}
             {
                 type === 'textarea' && <textarea id={`${id}-${label}`} rows={5} value={value} placeholder={placeholder} className={styles.input} onChange={handleInputChange} />
+            }
+            {
+                type !== 'textarea' && <input type={type} id={`${id}-${label}`} value={value} placeholder={placeholder} className={styles.input} onChange={handleInputChange} />
             }
             {error && <p className={styles.error}>{error}</p>}
         </div>
