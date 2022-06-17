@@ -1,11 +1,11 @@
-export default function TaskRow() {
+export default function TaskRow({task}) {
 
     return(
         <tr>
-            <td>sdqsd</td>
-            <td>qsdqds</td>
-            <td>qsdqsd</td>
-            <td>qsdqsdq</td>
+            <td></td>
+            <td>{task.title}</td>
+            <td>{task.description}</td>
+            <td>{new Date(task.createdAt).toLocaleDateString()}</td>
         </tr>
     )
 }

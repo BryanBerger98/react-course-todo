@@ -1,7 +1,11 @@
+import { useContext } from 'react';
+import { TasksContext } from '../../../context/TasksContext';
 import TaskRow from './TaskRow';
 import styles from './TasksList.module.css';
 
 export default function TasksList() {
+
+    const { tasksData } = useContext(TasksContext);
 
     return(
         <div className={`${styles['tasks-list-container']}`}>
@@ -15,9 +19,12 @@ export default function TasksList() {
                     </tr>
                 </thead>
                 <tbody>
-                    <TaskRow />
+                    {tasksData && tasksData.tasks && tasksData.tasks.map((task, index) => (
+                        <TaskRow key={index} task={task} />
+                    ))}
                 </tbody>
             </table>
+            {(!tasksData || !tasksData.tasks || tasksData.tasks.length === 0) && <p style={{marginTop: '1rem', marginBottom: 0, textAlign: 'center'}}>No task</p>}
         </div>
     )
 }
