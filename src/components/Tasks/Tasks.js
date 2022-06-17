@@ -1,16 +1,21 @@
 import Button from "../ui/Button/Button";
 import TasksList from "./TasksList/TasksList";
 import styles from './Tasks.module.css';
+import Modal from "../ui/Modal/Modal";
+import { useState } from "react";
 
 export default function Tasks() {
+
+    const [isNewTaskModalOpen, setIsNewTaskModalOpen] = useState(true);
 
     return(
         <>
             <div className={styles['tasks-header']}>
                 <h2>Tasks</h2>
-                <Button>New Task</Button>
+                <Button onClick={() => setIsNewTaskModalOpen(true)}>New Task</Button>
             </div>
             <TasksList />
+            <Modal isOpen={isNewTaskModalOpen} setIsOpen={setIsNewTaskModalOpen} />
         </>
     )    
 }
