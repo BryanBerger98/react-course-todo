@@ -1,0 +1,22 @@
+.tasks-list-container {
+    padding: 2rem;
+    background-color: #FBFBFF;
+    border-radius: 15px;
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+}
+
+.tasks-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tasks-table th {
+    text-align: left;
+    border-bottom: 1px solid #232D34;
+    padding: .8rem .5rem;
+}
+
+.tasks-table td {
+    border-bottom: 1px solid #DDDEE2;
+    padding: .8rem .5rem;
+}
