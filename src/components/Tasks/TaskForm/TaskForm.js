@@ -1,17 +1,25 @@
+import { useContext } from "react";
 import { useState } from "react";
+import { TasksContext } from "../../../context/TasksContext";
 import Button from "../../ui/Button/Button";
 import Field from "../../ui/Field/Field";
 
 export default function TaskForm({closeModal}) {
+
 
     const [formValue, setFormValue] = useState({
         title: '',
         description: ''
     })
 
+    const { addTask } = useContext(TasksContext)
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formValue);
+        addTask({
+            ...formValue,
+            createdAt: new Date()
+        });
         closeModal();
     }
 
