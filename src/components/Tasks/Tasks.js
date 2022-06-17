@@ -17,7 +17,7 @@ export default function Tasks() {
             </div>
             <TasksList />
             <Modal isOpen={isNewTaskModalOpen} setIsOpen={setIsNewTaskModalOpen} title={'New task'}>
-                <TaskForm />
+                <TaskForm closeModal={() => setIsNewTaskModalOpen(false)} />
             </Modal>
         </>
     )    

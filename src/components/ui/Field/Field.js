@@ -8,14 +8,16 @@ export default function Field({label, type = 'text', placeholder, value, validat
 
     const handleInputChange = (e) => {
         const { value } = e.target;
-        if (validation.type && typeof value !== validation.type) {
-            setError(`The value must be a ${validation.type}`);
-        } else if (validation.required && !value) {
-            setError('This field is required');
-        } else if (validation.length && value.length < validation.length) {
-            setError(`The value must have at least ${validation.length} characters`);
-        } else {
-            setError(null);
+        if (validation) {
+            if (validation.type && typeof value !== validation.type) {
+                setError(`The value must be a ${validation.type}`);
+            } else if (validation.required && !value) {
+                setError('This field is required');
+            } else if (validation.length && value.length < validation.length) {
+                setError(`The value must have at least ${validation.length} characters`);
+            } else {
+                setError(null);
+            }
         }
         onChange(value);
     }
