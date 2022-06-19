@@ -1,4 +1,7 @@
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import About from './components/About/About';
+import Api from './components/Api/Api';
 import Header from './components/Header/Header';
 import Tasks from './components/Tasks/Tasks';
 import TasksContextProvider from './context/TasksContext';
@@ -9,7 +12,12 @@ function App() {
       <Header />
       <section className='container'>
         <TasksContextProvider>
-          <Tasks />
+         
+          <Routes>
+            <Route path="/" element={<Tasks />} />
+            <Route path="about" element={<About />} />
+            <Route path='api' element={<Api />} />
+          </Routes>
         </TasksContextProvider>
       </section>
     </>
